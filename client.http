@@ -1,0 +1,41 @@
+@baseUrl = http://127.0.0.1:5000
+
+###
+
+POST {{baseUrl}}/tasks
+Content-Type: application/json
+
+{
+    "title": "Estudar",
+    "description": "Estudar para prova de matemática"
+}
+
+### 
+
+GET {{baseUrl}}/tasks
+Content-Type: application/json
+
+###
+
+GET {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+###
+
+PUT {{baseUrl}}/tasks/1
+Content-Type: application/json
+
+{
+    "title": "Estudar",
+    "description": "Estudar para prova de matemática e história",
+    "completed": false
+}
+
+###
+
+DELETE {{{{baseUrl}}}}/tasks/1
+Content-Type: application/json
+
+{
+    "id":1
+}
