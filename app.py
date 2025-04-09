@@ -14,7 +14,7 @@ def create_task():
     new_task = Task(id=task_id_control ,title=data['title'], description=data.get('description', ''))
     task_id_control += 1
     tasks.append(new_task)
-    return jsonify({"message": "Nova tarefa criada por sucesso."})
+    return jsonify({"message": "Nova tarefa criada por sucesso.", "id": new_task.id})
 
 @app.route('/tasks', methods=['GET'])
 def get_tasks():
@@ -22,7 +22,7 @@ def get_tasks():
 
     output = {
         "tasks":task_list,
-        "total":len(task_list),
+        "total_tasks":len(task_list),
     }
 
     return jsonify(output)
@@ -40,7 +40,6 @@ def get_task(id):
 @app.route('/user/<user_id>')
 # Criando variáveis como parâmetros da rota
 def show_user(user_id):
-    print(user_id)
     return f"User: {user_id}"
 
 @app.route('/tasks/<int:id>', methods=['PUT'])
@@ -50,7 +49,6 @@ def update_task(id):
         if t.id == id:
             task = t
     
-    print(task)
     if task == None:
         return jsonify({"message": "Tarefa não encontrada."}), 404
     
@@ -58,7 +56,6 @@ def update_task(id):
     task.title = data['title']
     task.description = data['description']
     task.completed = data['completed']
-    print(task)
     return jsonify({"message": "Tarefa atualizada com sucesso"})
 
 @app.route('/tasks/<int:id>', methods=['DELETE'])
